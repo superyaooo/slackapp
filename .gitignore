@@ -1,6 +1,11 @@
+.DS_Store
+
 __pycache__
 .vscode
 env
 
 
 bottoken.py
+settings.py
+members.json
+vanguard.py
