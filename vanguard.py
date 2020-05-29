@@ -1,8 +1,8 @@
 from tinydb import TinyDB, Query
 
 class Vanguard(object):
-    def __init__(self):
-        self.db = TinyDB('members.json')
+    def __init__(self, db_filename):
+        self.db = TinyDB(db_filename)
         member = self.get_member()
         self.name = member['name']
         self.slack_id = member['slackid']

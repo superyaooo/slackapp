@@ -10,15 +10,17 @@ from greetings import Greetings
 def post_message():
     weekday = datetime.now().isoweekday()
     if 0 < weekday < 6:
-        vanguard = Vanguard()
+        team_a_vanguard = Vanguard('team_a.json')
+        team_b_vanguard = Vanguard('team_b.json')
         greeting = Greetings().get_greeting()
         client = WebClient(token=bot_token)
         client.chat_postMessage(
             channel=channel_id,
             link_names='true',
-            text=f"<!here|here> {greeting} Today's vanguard for team #001 is:  {vanguard.name}. Please direct all team related questions to <@{vanguard.slack_id}>"
+            text=f"<!here|here> {greeting} Today's vanguard for team a is:  {team_a_vanguard.name}. And the vanguard for team b is: {team_b_vanguard.name}. Please direct all team related questions to <@{team_a_vanguard.slack_id}> and <@{team_b_vanguard.slack_id}>"
         )
-        vanguard.update_member()
+        team_a_vanguard.update_member()
+        team_b_vanguard.update_member()
     else:
         print("not a week day")
 
